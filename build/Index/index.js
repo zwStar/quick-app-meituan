@@ -49,9 +49,10 @@
 
 	__webpack_require__(1)
 	__webpack_require__(5)
-	var $app_template$ = __webpack_require__(9)
-	var $app_style$ = __webpack_require__(10)
-	var $app_script$ = __webpack_require__(11)
+	__webpack_require__(9)
+	var $app_template$ = __webpack_require__(13)
+	var $app_style$ = __webpack_require__(14)
+	var $app_script$ = __webpack_require__(15)
 	
 	$app_define$('@app-component/index', [], function($app_require$, $app_exports$, $app_module$){
 	     $app_script$($app_module$, $app_exports$, $app_require$)
@@ -73,7 +74,7 @@
 	var $app_style$ = __webpack_require__(3)
 	var $app_script$ = __webpack_require__(4)
 	
-	$app_define$('@app-component/shops', [], function($app_require$, $app_exports$, $app_module$){
+	$app_define$('@app-component/header', [], function($app_require$, $app_exports$, $app_module$){
 	     $app_script$($app_module$, $app_exports$, $app_require$)
 	     if ($app_exports$.__esModule && $app_exports$.default) {
 	            $app_module$.exports = $app_exports$.default
@@ -85,6 +86,461 @@
 
 /***/ },
 /* 2 */
+/***/ function(module, exports) {
+
+	module.exports = {
+	  "type": "div",
+	  "attr": {},
+	  "classList": [
+	    "header"
+	  ],
+	  "children": [
+	    {
+	      "type": "div",
+	      "attr": {},
+	      "classList": [
+	        "location"
+	      ],
+	      "children": [
+	        {
+	          "type": "image",
+	          "attr": {
+	            "src": "../assets/location-icon.png"
+	          },
+	          "classList": [
+	            "location-icon"
+	          ]
+	        },
+	        {
+	          "type": "text",
+	          "attr": {
+	            "value": function () {return this.address}
+	          },
+	          "classList": [
+	            "address"
+	          ],
+	          "events": {
+	            "click": "location"
+	          }
+	        },
+	        {
+	          "type": "image",
+	          "attr": {
+	            "src": "../assets/right-icon.png"
+	          },
+	          "classList": [
+	            "right-icon"
+	          ]
+	        }
+	      ]
+	    },
+	    {
+	      "type": "div",
+	      "attr": {},
+	      "classList": [
+	        "search"
+	      ],
+	      "events": {
+	        "click": "searchShops"
+	      },
+	      "children": [
+	        {
+	          "type": "image",
+	          "attr": {
+	            "src": "../assets/search-icon.png"
+	          },
+	          "classList": [
+	            "search-icon"
+	          ]
+	        },
+	        {
+	          "type": "text",
+	          "attr": {
+	            "value": "寿司"
+	          },
+	          "classList": [
+	            "search-value"
+	          ]
+	        }
+	      ]
+	    }
+	  ]
+	}
+
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	module.exports = {
+	  ".header": {
+	    "marginTop": "10px",
+	    "paddingTop": "0px",
+	    "paddingRight": "28px",
+	    "paddingBottom": "0px",
+	    "paddingLeft": "52px"
+	  },
+	  ".header .location": {
+	    "height": "88px",
+	    "alignItems": "center",
+	    "paddingRight": "30px",
+	    "_meta": {
+	      "ruleDef": [
+	        {
+	          "t": "a",
+	          "n": "class",
+	          "i": false,
+	          "a": "element",
+	          "v": "header"
+	        },
+	        {
+	          "t": "d"
+	        },
+	        {
+	          "t": "a",
+	          "n": "class",
+	          "i": false,
+	          "a": "element",
+	          "v": "location"
+	        }
+	      ]
+	    }
+	  },
+	  ".header .location .location-icon": {
+	    "width": "29px",
+	    "height": "37px",
+	    "marginTop": "0px",
+	    "marginRight": "16px",
+	    "marginBottom": "0px",
+	    "marginLeft": "16px",
+	    "_meta": {
+	      "ruleDef": [
+	        {
+	          "t": "a",
+	          "n": "class",
+	          "i": false,
+	          "a": "element",
+	          "v": "header"
+	        },
+	        {
+	          "t": "d"
+	        },
+	        {
+	          "t": "a",
+	          "n": "class",
+	          "i": false,
+	          "a": "element",
+	          "v": "location"
+	        },
+	        {
+	          "t": "d"
+	        },
+	        {
+	          "t": "a",
+	          "n": "class",
+	          "i": false,
+	          "a": "element",
+	          "v": "location-icon"
+	        }
+	      ]
+	    }
+	  },
+	  ".header .location .right-icon": {
+	    "width": "14px",
+	    "height": "24px",
+	    "marginLeft": "18px",
+	    "_meta": {
+	      "ruleDef": [
+	        {
+	          "t": "a",
+	          "n": "class",
+	          "i": false,
+	          "a": "element",
+	          "v": "header"
+	        },
+	        {
+	          "t": "d"
+	        },
+	        {
+	          "t": "a",
+	          "n": "class",
+	          "i": false,
+	          "a": "element",
+	          "v": "location"
+	        },
+	        {
+	          "t": "d"
+	        },
+	        {
+	          "t": "a",
+	          "n": "class",
+	          "i": false,
+	          "a": "element",
+	          "v": "right-icon"
+	        }
+	      ]
+	    }
+	  },
+	  ".header .location .address": {
+	    "fontSize": "40px",
+	    "fontWeight": "bold",
+	    "_meta": {
+	      "ruleDef": [
+	        {
+	          "t": "a",
+	          "n": "class",
+	          "i": false,
+	          "a": "element",
+	          "v": "header"
+	        },
+	        {
+	          "t": "d"
+	        },
+	        {
+	          "t": "a",
+	          "n": "class",
+	          "i": false,
+	          "a": "element",
+	          "v": "location"
+	        },
+	        {
+	          "t": "d"
+	        },
+	        {
+	          "t": "a",
+	          "n": "class",
+	          "i": false,
+	          "a": "element",
+	          "v": "address"
+	        }
+	      ]
+	    }
+	  },
+	  ".header .search": {
+	    "flex": 1,
+	    "alignItems": "center",
+	    "backgroundColor": "#efefef",
+	    "borderRadius": "40px",
+	    "_meta": {
+	      "ruleDef": [
+	        {
+	          "t": "a",
+	          "n": "class",
+	          "i": false,
+	          "a": "element",
+	          "v": "header"
+	        },
+	        {
+	          "t": "d"
+	        },
+	        {
+	          "t": "a",
+	          "n": "class",
+	          "i": false,
+	          "a": "element",
+	          "v": "search"
+	        }
+	      ]
+	    }
+	  },
+	  ".header .search .search-icon": {
+	    "width": "37px",
+	    "height": "35px",
+	    "marginTop": "0px",
+	    "marginRight": "10px",
+	    "marginBottom": "0px",
+	    "marginLeft": "29px",
+	    "_meta": {
+	      "ruleDef": [
+	        {
+	          "t": "a",
+	          "n": "class",
+	          "i": false,
+	          "a": "element",
+	          "v": "header"
+	        },
+	        {
+	          "t": "d"
+	        },
+	        {
+	          "t": "a",
+	          "n": "class",
+	          "i": false,
+	          "a": "element",
+	          "v": "search"
+	        },
+	        {
+	          "t": "d"
+	        },
+	        {
+	          "t": "a",
+	          "n": "class",
+	          "i": false,
+	          "a": "element",
+	          "v": "search-icon"
+	        }
+	      ]
+	    }
+	  },
+	  ".header .search .search-value": {
+	    "fontSize": "36px",
+	    "_meta": {
+	      "ruleDef": [
+	        {
+	          "t": "a",
+	          "n": "class",
+	          "i": false,
+	          "a": "element",
+	          "v": "header"
+	        },
+	        {
+	          "t": "d"
+	        },
+	        {
+	          "t": "a",
+	          "n": "class",
+	          "i": false,
+	          "a": "element",
+	          "v": "search"
+	        },
+	        {
+	          "t": "d"
+	        },
+	        {
+	          "t": "a",
+	          "n": "class",
+	          "i": false,
+	          "a": "element",
+	          "v": "search-value"
+	        }
+	      ]
+	    }
+	  }
+	}
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	module.exports = function(module, exports, $app_require$){'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _system = $app_require$('@app-module/system.router');
+	
+	var _system2 = _interopRequireDefault(_system);
+	
+	var _system3 = $app_require$('@app-module/system.geolocation');
+	
+	var _system4 = _interopRequireDefault(_system3);
+	
+	var _system5 = $app_require$('@app-module/system.prompt');
+	
+	var _system6 = _interopRequireDefault(_system5);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+	
+	exports.default = {
+	    data: {
+	        lng: '',
+	        lat: '',
+	        address: '定位中...'
+	    },
+	    onInit: function onInit() {
+	        var _this = this;
+	        var address = this.$app.$def.location.address || '';
+	        if (address) {
+	            this.address = address;
+	            this.fetchShops();
+	        } else {
+	            _system4.default.getLocation({
+	                success: function success(response) {
+	                    _this.getAddress(response);
+	                },
+	                fail: function fail(data, code) {
+	                    console.log('handling fail, code = ' + code);
+	                }
+	            });
+	        }
+	    },
+	    location: function location() {
+	        _system2.default.push({
+	            uri: '/Location'
+	        });
+	    },
+	    getAddress: function () {
+	        var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(location) {
+	            var response;
+	            return regeneratorRuntime.wrap(function _callee$(_context) {
+	                while (1) {
+	                    switch (_context.prev = _context.next) {
+	                        case 0:
+	                            _context.next = 2;
+	                            return network.get('v1/detail_position?' + 'lng=' + location.longitude + '&lat=' + location.latitude);
+	
+	                        case 2:
+	                            response = _context.sent;
+	
+	                            response = JSON.parse(response);
+	                            this.address = response.data.address;
+	                            this.$app.$def.location = {
+	                                address: this.address,
+	                                lng: response.data.location.lng,
+	                                lat: response.data.location.lat
+	                            };
+	                            this.fetchShops();
+	
+	                        case 7:
+	                        case 'end':
+	                            return _context.stop();
+	                    }
+	                }
+	            }, _callee, this);
+	        }));
+	
+	        function getAddress(_x) {
+	            return _ref.apply(this, arguments);
+	        }
+	
+	        return getAddress;
+	    }(),
+	    fetchShops: function fetchShops() {
+	        var _this2 = this;
+	
+	        setTimeout(function () {
+	            _this2.previousVm.$emit('addressChange');
+	        }, 0);
+	    },
+	    searchShops: function searchShops() {
+	        _system2.default.push({
+	            uri: '/Search'
+	        });
+	    }
+	};}
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var $app_template$ = __webpack_require__(6)
+	var $app_style$ = __webpack_require__(7)
+	var $app_script$ = __webpack_require__(8)
+	
+	$app_define$('@app-component/shops', [], function($app_require$, $app_exports$, $app_module$){
+	     $app_script$($app_module$, $app_exports$, $app_require$)
+	     if ($app_exports$.__esModule && $app_exports$.default) {
+	            $app_module$.exports = $app_exports$.default
+	        }
+	     $app_module$.exports.template = $app_template$
+	     $app_module$.exports.style = $app_style$
+	})
+
+
+/***/ },
+/* 6 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -113,7 +569,7 @@
 	            "shops-item"
 	          ],
 	          "events": {
-	            "click": function (evt) {this.entryStore(evt)}
+	            "click": function (evt) {this.entryStore(this.$item.id,evt)}
 	          },
 	          "children": [
 	            {
@@ -317,7 +773,7 @@
 	}
 
 /***/ },
-/* 3 */
+/* 7 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -447,7 +903,7 @@
 	}
 
 /***/ },
-/* 4 */
+/* 8 */
 /***/ function(module, exports) {
 
 	module.exports = function(module, exports, $app_require$){'use strict';
@@ -481,15 +937,12 @@
 	        }],
 	        shopsData: [],
 	        hasMoreData: true,
-	        page: 1,
-	        limit: 4 },
-	    props: ['test', 'lng'],
-	    onInit: function onInit() {
-	        this.fetchShops();
-	        this.fetchShops();
-	    },
-	    locationChange: function locationChange() {
-	        this.fetchShops();
+	        page: 0,
+	        limit: 4,
+	        location: {
+	            lng: '',
+	            lat: ''
+	        }
 	    },
 	    fetchShops: function () {
 	        var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
@@ -499,13 +952,22 @@
 	                    switch (_context.prev = _context.next) {
 	                        case 0:
 	                            _context.next = 2;
-	                            return network.get('v1/restaurants?offset=0&limit=4&lng=113.26627&lat=23.13171');
+	                            return network.get('v1/restaurants?offset=' + this.page * this.limit + '&limit=' + this.limit + '&lng=' + this.location.lng + '&lat=' + this.location.lat);
 	
 	                        case 2:
 	                            response = _context.sent;
 	
 	                            response = JSON.parse(response);
-	                            this.shopsData = this.shopsData.concat(response.data);
+	                            if (response.status === 200 || response.status === 1) {
+	                                if (response.data.length < this.limit) {
+	                                    this.hasMoreData = false;
+	                                }
+	                                this.shopsData = this.shopsData.concat(response.data);
+	                            } else {
+	                                _system2.default.showToast({
+	                                    message: response.message
+	                                });
+	                            }
 	
 	                        case 5:
 	                        case 'end':
@@ -525,23 +987,35 @@
 	        _system2.default.showToast({
 	            message: '底部'
 	        });
-	        this.fetchShops();
+	
+	        if (this.hasMoreData) {
+	            this.page++;
+	            this.fetchShops();
+	        }
 	    },
-	    entryStore: function entryStore() {
+	    entryStore: function entryStore(id) {
 	        _system4.default.push({
 	            uri: '/Store',
-	            params: { id: 222 }
+	            params: { id: id }
 	        });
+	    },
+	
+	    events: {
+	        addressChange: function addressChange(evt) {
+	            this.location = this.$app.$def.location;
+	            this.fetchShops();
+	            this.fetchShops();
+	        }
 	    }
 	};}
 
 /***/ },
-/* 5 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var $app_template$ = __webpack_require__(6)
-	var $app_style$ = __webpack_require__(7)
-	var $app_script$ = __webpack_require__(8)
+	var $app_template$ = __webpack_require__(10)
+	var $app_style$ = __webpack_require__(11)
+	var $app_script$ = __webpack_require__(12)
 	
 	$app_define$('@app-component/navs', [], function($app_require$, $app_exports$, $app_module$){
 	     $app_script$($app_module$, $app_exports$, $app_require$)
@@ -554,7 +1028,7 @@
 
 
 /***/ },
-/* 6 */
+/* 10 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -660,7 +1134,7 @@
 	}
 
 /***/ },
-/* 7 */
+/* 11 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -729,7 +1203,7 @@
 	}
 
 /***/ },
-/* 8 */
+/* 12 */
 /***/ function(module, exports) {
 
 	module.exports = function(module, exports, $app_require$){'use strict';
@@ -789,7 +1263,7 @@
 	};}
 
 /***/ },
-/* 9 */
+/* 13 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -817,6 +1291,13 @@
 	                "index-content"
 	              ],
 	              "children": [
+	                {
+	                  "type": "header",
+	                  "attr": {
+	                    "id": "header"
+	                  },
+	                  "id": "header"
+	                },
 	                {
 	                  "type": "navs",
 	                  "attr": {}
@@ -889,7 +1370,10 @@
 	                },
 	                {
 	                  "type": "shops",
-	                  "attr": {}
+	                  "attr": {
+	                    "id": "shops"
+	                  },
+	                  "id": "shops"
 	                }
 	              ]
 	            },
@@ -997,7 +1481,7 @@
 	}
 
 /***/ },
-/* 10 */
+/* 14 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -1253,7 +1737,7 @@
 	}
 
 /***/ },
-/* 11 */
+/* 15 */
 /***/ function(module, exports) {
 
 	module.exports = function(module, exports, $app_require$){'use strict';
@@ -1263,6 +1747,12 @@
 	});
 	
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+	
+	var _system = $app_require$('@app-module/system.prompt');
+	
+	var _system2 = _interopRequireDefault(_system);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = {
 	    data: {
@@ -1275,6 +1765,17 @@
 	        }, {
 	            name: '筛选'
 	        }]
+	    },
+	    onReady: function onReady() {
+	        this.establishRef();
+	    },
+	    establishRef: function establishRef() {
+	        var header = this.$vm('header');
+	        var shops = this.$vm('shops');
+	        header.parentVm = this;
+	        shops.parentVm = this;
+	        shops.nextVm = header;
+	        header.previousVm = shops;
 	    }
 	};
 	

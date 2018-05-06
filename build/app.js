@@ -43,11 +43,12 @@
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	var $app_script$ = __webpack_require__(19)
+	var $app_script$ = __webpack_require__(29)
 	
 	$app_define$('@app-application/app', [], function($app_require$, $app_exports$, $app_module$){
 	     $app_script$($app_module$, $app_exports$, $app_require$)
@@ -60,25 +61,8 @@
 
 
 /***/ },
-/* 1 */,
-/* 2 */,
-/* 3 */,
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */
+
+/***/ 29:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = function(module, exports, $app_require$){'use strict';
@@ -87,11 +71,11 @@
 	    value: true
 	});
 	
-	__webpack_require__(20);
+	__webpack_require__(30);
 	
-	__webpack_require__(24);
+	__webpack_require__(34);
 	
-	var _util = __webpack_require__(25);
+	var _util = __webpack_require__(35);
 	
 	var _util2 = _interopRequireDefault(_util);
 	
@@ -100,32 +84,37 @@
 	exports.default = {
 	    showMenu: _util2.default.showMenu,
 	    createShortcut: _util2.default.createShortcut,
-	    lng: '',
-	    lat: '',
-	    store: { name: 'lilei' }
+	    location: {
+	        lng: '',
+	        lat: '',
+	        address: ''
+	    }
 	};
-	(exports.default || module.exports).manifest = {"package":"com.application.demo","name":"quick-meituan","versionName":"1.0.0","versionCode":"1","minPlatformVersion":"101","icon":"/Common/logo.png","features":[{"name":"system.prompt"},{"name":"system.router"},{"name":"system.shortcut"},{"name":"system.fetch"}],"permissions":[{"origin":"*"}],"config":{"logLevel":"off","designWidth":1080},"router":{"entry":"Store","pages":{"Index":{"component":"index"},"Store":{"component":"index"}}},"display":{"titleBarBackgroundColor":"#f2f2f2","titleBarTextColor":"#414141","menu":true,"pages":{"Home":{"titleBar":false},"Store":{}}}};
+	(exports.default || module.exports).manifest = {"package":"com.application.demo","name":"quick-meituan","versionName":"1.0.0","versionCode":"1","minPlatformVersion":"101","icon":"/Common/logo.png","features":[{"name":"system.prompt"},{"name":"system.router"},{"name":"system.shortcut"},{"name":"system.fetch"},{"name":"system.geolocation"}],"permissions":[{"origin":"*"}],"config":{"logLevel":"off","designWidth":1080},"router":{"entry":"Index","pages":{"Index":{"component":"index"},"Location":{"component":"index"},"Store":{"component":"index"},"Search":{"component":"index"}}},"display":{"titleBarBackgroundColor":"#ffd161","titleBarTextColor":"#ffffff","menu":true,"pages":{"Index":{"titleBarText":"美团外卖"},"Store":{"titleBarText":"美团外卖"},"Search":{"titleBarText":"美团外卖"},"Location":{"titleBarText":"美团外卖"}}}};
 	}
 
 /***/ },
-/* 20 */
+
+/***/ 30:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var globalRef = global.__proto__ || global;
 	// global注入regeneratorRuntime
-	globalRef.regeneratorRuntime = __webpack_require__(21);
+	globalRef.regeneratorRuntime = __webpack_require__(31);
 
 /***/ },
-/* 21 */
+
+/***/ 31:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(22);
+	module.exports = __webpack_require__(32);
 
 
 /***/ },
-/* 22 */
+
+/***/ 32:
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -150,7 +139,7 @@
 	// Force reevalutation of runtime.js.
 	g.regeneratorRuntime = undefined;
 	
-	module.exports = __webpack_require__(23);
+	module.exports = __webpack_require__(33);
 	
 	if (hadRuntime) {
 	  // Restore the original runtime.
@@ -166,7 +155,8 @@
 
 
 /***/ },
-/* 23 */
+
+/***/ 33:
 /***/ function(module, exports) {
 
 	/**
@@ -899,7 +889,8 @@
 
 
 /***/ },
-/* 24 */
+
+/***/ 34:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -917,10 +908,7 @@
 	function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 	
 	// 服务器地址
-	var SERVER_URL = 'http://39.108.3.12:3000/';
-	// const SERVER_URL = 'https://cnodejs.org/api';
-	// const SERVER_URL = '';
-	
+	var SERVER_URL = 'http://192.168.2.195:3000/';
 	
 	var network = {
 	  /**
@@ -983,7 +971,6 @@
 	  }(),
 	  get: function get(url, data) {
 	    return this.fetch({ url: url, data: data });
-	    // console.log(JSON.stringify(d), 9999);
 	  },
 	  post: function post(url, data) {
 	    return this.fetch({ url: url, data: data, method: 'post' });
@@ -998,7 +985,8 @@
 	// }
 
 /***/ },
-/* 25 */
+
+/***/ 35:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1080,7 +1068,8 @@
 	};
 
 /***/ }
-/******/ ]);
+
+/******/ });
   };
   if (typeof window === "undefined") {
     return createAppHandler();
@@ -1088,7 +1077,7 @@
   else {
     window.createAppHandler = createAppHandler
     // H5注入manifest以获取features
-    global.manifest = {"package":"com.application.demo","name":"quick-meituan","versionName":"1.0.0","versionCode":"1","minPlatformVersion":"101","icon":"/Common/logo.png","features":[{"name":"system.prompt"},{"name":"system.router"},{"name":"system.shortcut"},{"name":"system.fetch"}],"permissions":[{"origin":"*"}],"config":{"logLevel":"off","designWidth":1080},"router":{"entry":"Store","pages":{"Index":{"component":"index"},"Store":{"component":"index"}}},"display":{"titleBarBackgroundColor":"#f2f2f2","titleBarTextColor":"#414141","menu":true,"pages":{"Home":{"titleBar":false},"Store":{}}}};
+    global.manifest = {"package":"com.application.demo","name":"quick-meituan","versionName":"1.0.0","versionCode":"1","minPlatformVersion":"101","icon":"/Common/logo.png","features":[{"name":"system.prompt"},{"name":"system.router"},{"name":"system.shortcut"},{"name":"system.fetch"},{"name":"system.geolocation"}],"permissions":[{"origin":"*"}],"config":{"logLevel":"off","designWidth":1080},"router":{"entry":"Index","pages":{"Index":{"component":"index"},"Location":{"component":"index"},"Store":{"component":"index"},"Search":{"component":"index"}}},"display":{"titleBarBackgroundColor":"#ffd161","titleBarTextColor":"#ffffff","menu":true,"pages":{"Index":{"titleBarText":"美团外卖"},"Store":{"titleBarText":"美团外卖"},"Search":{"titleBarText":"美团外卖"},"Location":{"titleBarText":"美团外卖"}}}};
   }
 })();
 //# sourceMappingURL=app.js.map

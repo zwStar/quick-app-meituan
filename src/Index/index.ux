@@ -1,3 +1,4 @@
+<import name="header" src="./header/index"></import>
 <import name="shops" src="./shops/index"></import>
 <import name="navs" src="./Nav/index"></import>
 <template>
@@ -5,6 +6,7 @@
         <tabs>
             <tab-content class="tab-content">
                 <div class="index-content">
+                    <header id="header"></header>
                     <navs></navs>
                     <div class="title-wrap">
                         <div class="content">
@@ -20,7 +22,7 @@
                         </block>
                     </div>
                     <!--附近商家-->
-                    <shops></shops>
+                    <shops id="shops"></shops>
                 </div>
                 <div class="order-content">
                     <text>order</text>
@@ -28,10 +30,10 @@
             </tab-content>
 
             <tab-bar class="tab-bar">
-               <div class="bar-item">
-                   <image class="img" src="../assets/index.png"></image>
-                   <text>首页</text>
-               </div>
+                <div class="bar-item">
+                    <image class="img" src="../assets/index.png"></image>
+                    <text>首页</text>
+                </div>
                 <div class="bar-item">
                     <image class="img" src="../assets/order.png"></image>
                     <text>订单</text>
@@ -87,25 +89,27 @@
         }
     }
 
-    .tab-bar{
-        height:150px;
+    .tab-bar {
+        height: 150px;
         background-color: #fafafa;
-        .bar-item{
+        .bar-item {
             flex-direction: column;
             justify-content: center;
             align-items: center;
-           .img{
-               width:70px;
-               height:70px;
-           }
-            text{
-                font-size:32px;
+            .img {
+                width: 70px;
+                height: 70px;
+            }
+            text {
+                font-size: 32px;
             }
         }
     }
 
 </style>
 <script>
+    import prompt from '@system.prompt'
+
     export default {
         data: {
             navList: [
@@ -122,6 +126,20 @@
                     name: '筛选'
                 }
             ]
+        },
+        onReady() {
+            this.establishRef()
+        },
+        /**
+         * 建立相互VM的引用
+         */
+        establishRef() {
+            const header = this.$vm('header')
+            const shops = this.$vm('shops')
+            header.parentVm = this
+            shops.parentVm = this
+            shops.nextVm = header
+            header.previousVm = shops
         }
     }
 </script>

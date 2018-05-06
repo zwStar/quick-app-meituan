@@ -2,10 +2,7 @@ import nativeFetch from '@system.fetch'
 import prompt from '@system.prompt'
 
 // 服务器地址
-const SERVER_URL = 'http://39.108.3.12:3000/';
-// const SERVER_URL = 'https://cnodejs.org/api';
-// const SERVER_URL = '';
-
+const SERVER_URL = 'http://192.168.2.195:3000/';
 
 const network = {
   /**
@@ -45,7 +42,6 @@ const network = {
   },
   get (url, data) {
     return this.fetch({url, data});
-    // console.log(JSON.stringify(d), 9999);
   },
   post (url, data) {
     return this.fetch({url, data, method: 'post'})

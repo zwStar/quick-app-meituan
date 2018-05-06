@@ -11,8 +11,10 @@
     export default {
         showMenu: util.showMenu,
         createShortcut: util.createShortcut,
-        lng:'',
-        lat:'',
-        store: {name: 'lilei'}
+        location: {
+            lng: '',
+            lat: '',
+            address: ''
+        }
     }
 </script>

@@ -1,7 +1,7 @@
 <template>
     <list class="shops-wrap" onscrollbottom="loadMoreData" scrollpage="true">
         <block for="shopsData">
-            <list-item type="shopsItem" class="shops-item" @click="entryStore()">
+            <list-item type="shopsItem" class="shops-item" @click="entryStore($item.id)">
                 <image class="shops-image" src="{{$item.pic_url}}"></image>
                 <div class="shops-detail">
                     <text class="item-name">{{$item.name}}</text>
@@ -107,6 +107,7 @@
 <script>
     import prompt from '@system.prompt'
     import router from '@system.router'
+
     export default {
         data: {
             navList: [
@@ -125,34 +126,52 @@
             ],
             shopsData: [],
             hasMoreData: true,
-            page: 1,               //当前餐馆列表加载到第几页
+            page: 0,               //当前餐馆列表加载到第几页
             limit: 4,              //每次拉去的餐馆数量
-        },
-        props: ['test', 'lng'],
-        onInit() {
-            this.fetchShops();
-            this.fetchShops();
-        },
-        locationChange() {
-            this.fetchShops();
+            location: {
+                lng: '',
+                lat: ''
+            }
         },
         async fetchShops() {
-            let response = await network.get(`v1/restaurants?offset=0&limit=4&lng=113.26627&lat=23.13171`);
-            response = JSON.parse(response)
-            this.shopsData = this.shopsData.concat(response.data);
+            let response = await network.get(`v1/restaurants?offset=${this.page * this.limit}&limit=${this.limit}&lng=${this.location.lng}&lat=${this.location.lat}`);
+            response = JSON.parse(response);
+            if (response.status === 200 || response.status === 1) {
+                if (response.data.length < this.limit) {
+                    this.hasMoreData = false;
+                }
+                this.shopsData = this.shopsData.concat(response.data);
+            } else {
+                // 请求出错提示
+                prompt.showToast({
+                    message: response.message
+                })
+            }
 
         },
         loadMoreData() {
             prompt.showToast({
-                message:'底部'
+                message: '底部'
             })
-            this.fetchShops();
+
+            // 如果还有更多的数据
+            if (this.hasMoreData) {
+                this.page++;
+                this.fetchShops();
+            }
         },
-        entryStore(){
+        entryStore(id) {
             router.push({
                 uri: '/Store',
-                params: {id: 222}
+                params: {id}
             });
+        },
+        events: {
+            addressChange(evt) {
+                this.location = this.$app.$def.location;
+                this.fetchShops();
+                this.fetchShops();
+            }
         }
     }
 </script>

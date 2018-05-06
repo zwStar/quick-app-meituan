@@ -1,0 +1,118 @@
+<template>
+    <div id="location">
+        <div class="search-wrap">
+            <div class="input-wrap">
+                <input type="text" class="input" @change="change()">
+            </div>
+            <div class="btn-wrap">
+                <text class="search">搜索</text>
+            </div>
+        </div>
+
+        <div class="location-now" show="{{addressLists.length === 0}}" @click="locationNow">
+            <text class="text">点击定位当前位置</text>
+        </div>
+        <list>
+            <block for="{{addressLists}}">
+                <list-item type="address-item" class="address-item" @click="selectAddress($item)">
+                    <text class="title">{{$item.title}}</text>
+                    <text class="address">{{$item.address}}</text>
+                </list-item>
+            </block>
+        </list>
+    </div>
+</template>
+
+<style type="text/less" lang="less">
+    #location {
+        flex-direction: column;
+        background-color: #f4f4f4;
+    }
+
+    .search-wrap {
+        padding: 35px;
+        .input-wrap {
+            border-radius: 25px;
+            margin-right: 30px;
+            background-color: #efeef4;
+            flex: 1;
+            .input {
+                width: 80%;
+            }
+        }
+        .btn-wrap {
+            width: 190px;
+            height: 90px;
+            background-color: #919191;
+            justify-content: center;
+        }
+    }
+
+    .location-now {
+        height: 150px;
+        background-color: #fff;
+        justify-content: center;
+        align-items: center;
+        .text {
+            font-size: 40px;
+        }
+    }
+
+    .address-item {
+        flex-direction: column;
+        padding-left: 40px;
+        background-color: #fff;
+        border-bottom-width: 1px;
+        border-bottom-color: #9f9f9f;
+        .title {
+            margin-top: 20px;
+            font-size: 38px;
+        }
+        .address {
+            color: #a3a3a3;
+            margin: 30px 0;
+            font-size: 38px;
+        }
+    }
+</style>
+
+<script>
+    import prompt from '@system.prompt'
+    import router from '@system.router'
+
+    export default {
+        data: {
+            addressLists: []
+        },
+        change(evt) {
+            let keyword = evt.value;
+            if (!keyword) {
+                this.addressLists = []
+            }
+            this.suggestionAddress(keyword);
+        },
+        async suggestionAddress(keyword) {
+            let response = await network.get(`v1/suggestion?keyword=${keyword}`);
+            response = JSON.parse(response);
+            this.addressLists = response.data.data;
+        },
+        locationNow() {
+            this.$app.$def.lng = '';
+            this.$app.$def.lat = '';
+            router.push({
+                uri: '/Index'
+            })
+        },
+        selectAddress(item) {
+            let location = item.location;
+            this.$app.$def.location = {
+                lng: location.lng,
+                lat: location.lat,
+                address: location.title
+            }
+            router.push({
+                uri: '/Index'
+            })
+        }
+    }
+</script>

@@ -3,14 +3,13 @@
     <div id="store">
         <div class="header">
             <image class="header-img"
-                   src="http://p0.meituan.net/xianfu/fdd295e7650587269e0f1d7c35ba180c114177.jpg"></image>
+                   src="{{shopsInfo.pic_url}}"></image>
             <div class="header-info-wrap">
                 <div class="delivery-info">
-                    <text class="delivery-price">起送15￥ |</text>
-                    <text class="delivery-time">30分钟 |</text>
-                    <text class="delivery-distance">1.2km</text>
+                    <text class="delivery-price">{{shopsInfo.min_price_tip}} |</text>
+                    <text class="delivery-time">{{shopsInfo.delivery_time_tip}} |</text>
                 </div>
-                <text class="bulletin">理工短号615592（原大学生粗粮坊）做你身边最快的外卖！</text>
+                <text class="bulletin">{{shopsInfo.bulletin}}</text>
                 <div class="discounts-wrap">
                     <div class="discount-item">
                         <image class="icon"
@@ -35,7 +34,7 @@
             </tab-bar>
 
             <tab-content>
-              <menu></menu>
+                <menu id="{{id}}"></menu>
             </tab-content>
         </tabs>
     </div>
@@ -47,7 +46,7 @@
     }
 
     .header {
-        background-color: #343434;
+        background-color: #ffd161;
         padding: 30px 24px;
     }
 
@@ -93,5 +92,23 @@
 </style>
 
 <script>
-    export default {}
+    import prompt from '@system.prompt'
+
+    export default {
+        data: {
+            id: 0,
+            shopsInfo: {}
+        },
+        onInit() {
+            this.getShopsInfo();
+        },
+        async getShopsInfo() {
+            let response = await network.get(`v1/restaurant/${this.id}`);
+            response = JSON.parse(response);
+            if (response.status === 200 || response.status === 1) {
+                this.shopsInfo = response.data;
+            }
+
+        }
+    }
 </script>

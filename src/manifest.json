@@ -17,6 +17,9 @@
     },
     {
       "name": "system.fetch"
+    },
+    {
+      "name": "system.geolocation"
     }
   ],
   "permissions": [
@@ -29,26 +32,38 @@
     "designWidth": 1080
   },
   "router": {
-    "entry": "Store",
+    "entry": "Index",
     "pages": {
       "Index": {
         "component": "index"
       },
-      "Store":{
-        "component":"index"
+      "Location": {
+        "component": "index"
+      },
+      "Store": {
+        "component": "index"
+      },
+      "Search": {
+        "component": "index"
       }
     }
   },
   "display": {
-    "titleBarBackgroundColor": "#f2f2f2",
-    "titleBarTextColor": "#414141",
+    "titleBarBackgroundColor": "#ffd161",
+    "titleBarTextColor": "#ffffff",
     "menu": true,
     "pages": {
-      "Home": {
-        "titleBar": false
+      "Index": {
+        "titleBarText": "美团外卖"
       },
-      "Store":{
-
+      "Store": {
+        "titleBarText": "美团外卖"
+      },
+      "Search": {
+        "titleBarText": "美团外卖"
+      },
+      "Location": {
+        "titleBarText": "美团外卖"
       }
     }
   }

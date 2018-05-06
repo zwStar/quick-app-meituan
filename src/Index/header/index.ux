@@ -1,0 +1,117 @@
+<template>
+    <div class="header">
+        <div class="location">
+            <image class="location-icon" src="../assets/location-icon.png"></image>
+            <text class="address" @click="location">{{address}}</text>
+            <image class="right-icon" src="../assets/right-icon.png"></image>
+        </div>
+        <div class="search" @click="searchShops">
+            <image class="search-icon" src="../assets/search-icon.png"></image>
+            <text class="search-value">寿司</text>
+        </div>
+    </div>
+</template>
+
+<style type="text/less" lang="less">
+    .header {
+        margin-top: 10px;
+        padding: 0 28px 0 52px;
+        .location {
+            height: 88px;
+            align-items: center;
+            padding-right: 30px;
+            .location-icon {
+                width: 29px;
+                height: 37px;
+                margin: 0 16px;
+            }
+            .right-icon {
+                width: 14px;
+                height: 24px;
+                margin-left: 18px;
+            }
+            .address {
+                font-size: 40px;
+                font-weight: bold;
+            }
+        }
+
+        .search {
+            flex: 1;
+            align-items: center;
+            background-color: #efefef;
+            border-radius: 40px;
+
+            .search-icon {
+                width: 37px;
+                height: 35px;
+                margin: 0 10px 0 29px;
+            }
+            .search-value {
+                font-size: 36px;
+            }
+        }
+    }
+
+</style>
+
+<script>
+    import router from '@system.router'
+    import geolocation from '@system.geolocation'
+    import prompt from '@system.prompt'
+
+    export default {
+        data: {
+            lng: '',
+            lat: '',
+            address: '定位中...'
+        },
+        onInit() {
+            let _this = this;
+            let address = this.$app.$def.location.address || '';
+            if (address) {
+                this.address = address;
+                this.fetchShops();
+            } else {
+                geolocation.getLocation({
+                    success: function (response) {
+                        _this.getAddress(response)
+                    },
+                    fail: function (data, code) {
+                        console.log(`handling fail, code = ${code}`)
+                    }
+                })
+            }
+        },
+        location() {
+            router.push({
+                uri: '/Location'
+            })
+        },
+        async getAddress(location) {
+            let response = await network.get('v1/detail_position?' + 'lng=' + location.longitude + '&lat=' + location.latitude);
+            response = JSON.parse(response);
+            this.address = response.data.address;
+            this.$app.$def.location = {
+                address: this.address,
+                lng: response.data.location.lng,
+                lat: response.data.location.lat
+            }
+            this.fetchShops();
+        },
+        fetchShops() {
+            /*
+             *  因为子组件的onInit 和 onReady再父组件之前调用 导致this.previousVm获取不到
+             *  因为previousVm是在父组件的onReady中绑定的 所以要用定时器hack方法解决
+             */
+            setTimeout(() => {
+                this.previousVm.$emit('addressChange')
+            }, 0)
+        },
+        searchShops() {
+            router.push({
+                uri: '/Search'
+            })
+        }
+    }
+</script>
