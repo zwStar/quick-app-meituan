@@ -1,0 +1,158 @@
+<template>
+    <list class="shops-wrap" onscrollbottom="loadMoreData" scrollpage="true">
+        <block for="shopsData">
+            <list-item type="shopsItem" class="shops-item" @click="entryStore()">
+                <image class="shops-image" src="{{$item.pic_url}}"></image>
+                <div class="shops-detail">
+                    <text class="item-name">{{$item.name}}</text>
+                    <div class="shops-message">
+                        <div class="shops-info-left">
+                            <rating class="rating" rating="{{$item.wm_poi_score}}"></rating>
+                            <text class="sell-num">{{$item.month_sales_tip}}</text>
+                        </div>
+                        <div class="delivery-info">
+                            <text class="deliver-time">{{$item.delivery_time_tip}}/</text>
+                            <text class="distance">{{$item.distance}}</text>
+                        </div>
+                    </div>
+                    <div class="price-message">
+                        <text>{{$item.min_price_tip}} |</text>
+                        <text>{{$item.shipping_fee_tip}} |</text>
+                        <text>{{$item.average_price_tip}}</text>
+                    </div>
+                    <div class="active-message">
+                        <block for="{{$item.discounts2}}">
+                            <div class="active-item" if="{{$idx < 2}}">
+                                <image class="discount-icon" src="{{$item.icon_url}}"></image>
+                                <text>{{$item.info}}{{$idx}}</text>
+                            </div>
+                        </block>
+                    </div>
+                </div>
+            </list-item>
+        </block>
+        <list-item type="loadStatus" class="load-status">
+            <progress type="circular" show="{{hasMoreData}}"></progress>
+            <text class="loading" show="{{hasMoreData}}">加载更多···</text>
+            <text show="{{!hasMoreData}}">没有更多了~</text>
+        </list-item>
+    </list>
+    </div>
+</template>
+
+<style type="text/less" lang="less">
+
+    .shops-wrap {
+        margin: 0 30px;
+    }
+
+    .shops-item {
+        margin-top: 95px;
+    }
+
+    .shops-image {
+        width: 216px;
+        height: 165px;
+        margin-right: 18px;
+        border: 1px solid #333;
+
+    }
+
+    .item-name {
+        font-size: 45px;
+        font-weight: bold;
+    }
+
+    .rating {
+        width: 170px;
+        height: 25px;
+    }
+
+    .shops-message {
+        justify-content: space-between;
+    }
+
+    .shops-detail {
+        flex: 1;
+        flex-direction: column;
+    }
+
+    .shops-info-left {
+        align-items: center;
+    }
+
+    .shops-detail text {
+        font-size: 32px;
+    }
+
+    .active-message {
+        flex-direction: column;
+        .active-item {
+            margin-top: 10px;
+            align-items: center;
+        }
+        .discount-icon {
+            width: 44px;
+            height: 44px;
+            margin-right: 16px;
+        }
+    }
+
+    .load-status {
+        justify-content: center;
+        margin: 30px 0;
+    }
+</style>
+
+<script>
+    import prompt from '@system.prompt'
+    import router from '@system.router'
+    export default {
+        data: {
+            navList: [
+                {
+                    name: '综合排序'
+                },
+                {
+                    name: '销量最高'
+                },
+                {
+                    name: '距离最近'
+                },
+                {
+                    name: '筛选'
+                }
+            ],
+            shopsData: [],
+            hasMoreData: true,
+            page: 1,               //当前餐馆列表加载到第几页
+            limit: 4,              //每次拉去的餐馆数量
+        },
+        props: ['test', 'lng'],
+        onInit() {
+            this.fetchShops();
+            this.fetchShops();
+        },
+        locationChange() {
+            this.fetchShops();
+        },
+        async fetchShops() {
+            let response = await network.get(`v1/restaurants?offset=0&limit=4&lng=113.26627&lat=23.13171`);
+            response = JSON.parse(response)
+            this.shopsData = this.shopsData.concat(response.data);
+
+        },
+        loadMoreData() {
+            prompt.showToast({
+                message:'底部'
+            })
+            this.fetchShops();
+        },
+        entryStore(){
+            router.push({
+                uri: '/Store',
+                params: {id: 222}
+            });
+        }
+    }
+</script>

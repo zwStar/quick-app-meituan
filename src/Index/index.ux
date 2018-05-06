@@ -1,0 +1,129 @@
+<import name="shops" src="./shops/index"></import>
+<import name="navs" src="./Nav/index"></import>
+<template>
+    <div id="index">
+        <tabs>
+            <tab-content class="tab-content">
+                <div class="index-content">
+                    <navs></navs>
+                    <div class="title-wrap">
+                        <div class="content">
+                            <text class="line"></text>
+                            <text class="title">附近商家</text>
+                            <text class="line"></text>
+                        </div>
+                    </div>
+                    <!--商家排序-->
+                    <div class="shops-nav">
+                        <block for="navList">
+                            <text class="item-name">{{$item.name}}</text>
+                        </block>
+                    </div>
+                    <!--附近商家-->
+                    <shops></shops>
+                </div>
+                <div class="order-content">
+                    <text>order</text>
+                </div>
+            </tab-content>
+
+            <tab-bar class="tab-bar">
+               <div class="bar-item">
+                   <image class="img" src="../assets/index.png"></image>
+                   <text>首页</text>
+               </div>
+                <div class="bar-item">
+                    <image class="img" src="../assets/order.png"></image>
+                    <text>订单</text>
+                </div>
+                <div class="bar-item">
+                    <image class="img" src="../assets/home.png"></image>
+                    <text>我的</text>
+                </div>
+            </tab-bar>
+        </tabs>
+
+
+    </div>
+</template>
+<style type="text/less" lang="less">
+    #index {
+        flex-direction: column;
+    }
+
+    .index-content {
+        flex-direction: column;
+    }
+
+    .title-wrap {
+        margin: 37px 0;
+        .content {
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            .line {
+                width: 85px;
+                font-weight: bold;
+                border-bottom-width: 1px;
+                border-bottom-color: #e4e4e4;
+            }
+            .title {
+                font-size: 44px;
+                font-weight: bold;
+                text-align: center;
+                margin: 0 30px;
+            }
+        }
+
+    }
+
+    .shops-nav {
+        height: 115px;
+        border: 1px solid #e4e4e4;
+        .item-name {
+            font-size: 38px;
+            text-align: center;
+            flex: 1;
+        }
+    }
+
+    .tab-bar{
+        height:150px;
+        background-color: #fafafa;
+        .bar-item{
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+           .img{
+               width:70px;
+               height:70px;
+           }
+            text{
+                font-size:32px;
+            }
+        }
+    }
+
+</style>
+<script>
+    export default {
+        data: {
+            navList: [
+                {
+                    name: '综合排序'
+                },
+                {
+                    name: '销量最高'
+                },
+                {
+                    name: '距离最近'
+                },
+                {
+                    name: '筛选'
+                }
+            ]
+        }
+    }
+</script>
+
+

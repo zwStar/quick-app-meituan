@@ -1,0 +1,54 @@
+{
+  "package": "com.application.demo",
+  "name": "quick-meituan",
+  "versionName": "1.0.0",
+  "versionCode": "1",
+  "minPlatformVersion": "101",
+  "icon": "/Common/logo.png",
+  "features": [
+    {
+      "name": "system.prompt"
+    },
+    {
+      "name": "system.router"
+    },
+    {
+      "name": "system.shortcut"
+    },
+    {
+      "name": "system.fetch"
+    }
+  ],
+  "permissions": [
+    {
+      "origin": "*"
+    }
+  ],
+  "config": {
+    "logLevel": "off",
+    "designWidth": 1080,
+    "debug": true
+  },
+  "router": {
+    "entry": "Store",
+    "pages": {
+      "Index": {
+        "component": "index"
+      },
+      "Store": {
+        "component": "index"
+      }
+    }
+  },
+  "display": {
+    "titleBarBackgroundColor": "#f2f2f2",
+    "titleBarTextColor": "#414141",
+    "menu": true,
+    "pages": {
+      "Home": {
+        "titleBar": false
+      },
+      "Store": {}
+    }
+  }
+}
